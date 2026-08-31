@@ -25,6 +25,24 @@ const posts = (await getCollection('blog')).sort(
 			section {
 				padding-top: 1rem;
 			}
+			.search-wrap {
+				margin: 0 0 1rem;
+			}
+			#blog-search {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.7rem 0.8rem;
+				border: 1px solid rgba(34, 34, 34, 0.2);
+				border-radius: 4px;
+				font: inherit;
+				font-size: 0.95rem;
+				background: #fff;
+				color: rgb(var(--black));
+			}
+			#blog-search:focus {
+				outline: 2px solid rgba(50, 115, 220, 0.18);
+				outline-offset: 1px;
+			}
 			ul {
 				list-style: disc;
 				margin: 0;
@@ -41,6 +59,7 @@ const posts = (await getCollection('blog')).sort(
 				padding: 0.05rem 0;
 				color: rgb(var(--black));
 				text-decoration: none;
+				width: 100%;
 			}
 			ul li a:hover .title,
 			ul li a:hover .date {
@@ -51,13 +70,16 @@ const posts = (await getCollection('blog')).sort(
 				color: rgb(var(--black));
 				font-size: 1.08rem;
 				font-weight: 400;
-				font-family: Georgia, 'Times New Roman', serif;
+				font-family: Verdana, sans-serif;
 				letter-spacing: -0.02em;
+				line-height: 1.4;
 			}
 			.date {
-				color: rgb(var(--gray));
-				font-size: 0.8rem;
+				color: #3273dc;
+				font-size: 0.82rem;
 				white-space: nowrap;
+				width: 7.2rem;
+				flex-shrink: 0;
 			}
 			@media (max-width: 720px) {
 				ul li a {
@@ -66,6 +88,7 @@ const posts = (await getCollection('blog')).sort(
 				.date {
 					display: inline-block;
 					margin-bottom: 0.15rem;
+					width: auto;
 				}
 			}
 		</style>
@@ -74,10 +97,13 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main>
 			<section>
+				<div class="search-wrap">
+					<input id="blog-search" type="search" placeholder="Search posts..." aria-label="Search posts" />
+				</div>
 				<ul>
 					{
 						posts.map((post) => (
-							<li>
+							<li class="post-item" data-search={post.data.title.toLowerCase()}>
 								<a href={`${baseUrl}blog/${post.id}/`}>
 									<span class="date">
 										<FormattedDate date={post.data.pubDate} />
@@ -91,5 +117,19 @@ const posts = (await getCollection('blog')).sort(
 			</section>
 		</main>
 		<Footer />
+		<script>
+			const searchInput = document.getElementById('blog-search');
+			const postItems = Array.from(document.querySelectorAll('.post-item'));
+			if (searchInput) {
+				searchInput.addEventListener('input', (event) => {
+					const query = (event.target.value || '').toLowerCase().trim();
+					postItems.forEach((item) => {
+						const haystack = (item.getAttribute('data-search') || '').toLowerCase();
+						const visible = !query || haystack.includes(query);
+						item.style.display = visible ? '' : 'none';
+					});
+				});
+			}
+		</script>
 	</body>
 </html>
