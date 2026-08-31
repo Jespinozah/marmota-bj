@@ -19,6 +19,13 @@
 	--box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 	--font-main: Verdana, sans-serif;
 	--font-secondary: Verdana, sans-serif;
+	--space-1: 0.5rem;
+	--space-2: 0.875rem;
+	--space-3: 1.25rem;
+	--space-4: 1.75rem;
+	--space-5: 2.25rem;
+	--space-6: 3rem;
+	--content-width: 760px;
 }
 html {
 	background: var(--bg);
@@ -33,17 +40,17 @@ body {
 	overflow-wrap: break-word;
 	color: rgb(var(--gray));
 	font-size: 16px;
-	line-height: 1.5;
+	line-height: 1.65;
 }
 main {
-	width: 760px;
+	width: var(--content-width);
 	max-width: calc(100% - 2em);
 	margin: 0 auto;
-	padding: 2.5em 1em 4em;
+	padding: clamp(1.1rem, 2vw, 2.2rem) 1rem 4.5rem;
 }
 
 p {
-	margin: 0 0 1.25em;
+	margin: 0 0 1.5em;
 }
 
 h1,
@@ -56,7 +63,7 @@ h6 {
 	color: rgb(var(--black));
 	line-height: 1.2;
 	letter-spacing: -0.02em;
-	margin: 0 0 0.75em;
+	margin: 0 0 0.8em;
 	font-weight: 700;
 }
 
@@ -83,16 +90,20 @@ b {
 a {
 	color: var(--accent);
 	text-decoration: none;
+	transition: color 0.18s ease;
 }
 a:hover {
 	color: var(--accent-dark);
 	text-decoration: underline;
 }
 p {
-	margin-bottom: 1em;
+	margin-bottom: 1.4em;
+}
+.prose > * + * {
+	margin-top: 1.2rem;
 }
 .prose p {
-	margin-bottom: 2em;
+	margin-bottom: 1.9em;
 }
 textarea {
 	width: 100%;
@@ -137,7 +148,7 @@ hr {
 		font-size: 15px;
 	}
 	main {
-		padding: 1em;
+		padding: 1.25rem 1rem 3.25rem;
 	}
 }
 

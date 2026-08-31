@@ -23,16 +23,16 @@ const posts = (await getCollection('blog')).sort(
 				width: 760px;
 			}
 			section {
-				padding-top: 1rem;
+				padding-top: 0.05rem;
 			}
 			.search-wrap {
-				margin: 0 0 1rem;
+				margin: 0 0 1.4rem;
 			}
 			#blog-search {
 				width: 100%;
 				box-sizing: border-box;
-				padding: 0.7rem 0.8rem;
-				border: 1px solid rgba(34, 34, 34, 0.2);
+				padding: 0.8rem 0.9rem;
+				border: 1px solid rgba(34, 34, 34, 0.18);
 				border-radius: 4px;
 				font: inherit;
 				font-size: 0.95rem;
@@ -50,13 +50,13 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li {
 				width: 100%;
-				margin: 0.2rem 0;
+				margin: 0.55rem 0;
 			}
 			ul li a {
 				display: flex;
 				align-items: baseline;
-				gap: 0.7rem;
-				padding: 0.05rem 0;
+				gap: 1rem;
+				padding: 0.18rem 0;
 				color: rgb(var(--black));
 				text-decoration: none;
 				width: 100%;
@@ -72,7 +72,7 @@ const posts = (await getCollection('blog')).sort(
 				font-weight: 400;
 				font-family: Verdana, sans-serif;
 				letter-spacing: -0.02em;
-				line-height: 1.4;
+				line-height: 1.5;
 			}
 			.date {
 				color: #3273dc;
