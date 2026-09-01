@@ -42,6 +42,11 @@ body {
 	font-size: 16px;
 	line-height: 1.65;
 }
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
 main {
 	width: var(--content-width);
 	max-width: calc(100% - 2em);
@@ -114,6 +119,9 @@ input {
 }
 table {
 	width: 100%;
+	display: block;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 }
 img {
 	max-width: 100%;
@@ -128,9 +136,16 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 }
 pre > code {
 	all: unset;
+}
+iframe,
+video {
+	max-width: 100%;
+	height: auto;
 }
 blockquote {
 	border-left: 1px solid #999;
